@@ -29,6 +29,14 @@ module Wallbum
         @width * @height
       end
 
+      def all_children
+        if leaf?
+          self
+        else
+          @children.collect(&:all_children).flatten
+        end
+      end
+
       def child_count
         if leaf?
           1
@@ -59,10 +67,8 @@ module Wallbum
 
       def split
         if @width > @height
-          puts "Splitting horz"
           split_horz
         else
-          puts "Splitting vert"
           split_vert
         end
       end
