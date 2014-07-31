@@ -1,3 +1,5 @@
+require 'rubystats'
+
 module Wallbum
   module ImagePacking
     class Rectangle
@@ -75,15 +77,27 @@ module Wallbum
       private
 
       def split_horz
-        new_width = @width / 2
-        @children << Rectangle.new(self, @x, @y, new_width, @height)
-        @children << Rectangle.new(self, @x + new_width, @y, new_width, @height)
+        half = (@width / 2)
+        cut = (half*multiplier).ceil
+        @children << Rectangle.new(self, @x, @y, cut, @height)
+        @children << Rectangle.new(self, @x + cut, @y, @width - cut, @height)
       end
 
       def split_vert
-        new_height = @height / 2
-        @children << Rectangle.new(self, @x, @y, @width, new_height)
-        @children << Rectangle.new(self, @x, @y + new_height, @width, new_height)
+        half = (@width / 2)
+        cut = (half * multiplier).ceil
+        @children << Rectangle.new(self, @x, @y, @width, cut)
+        @children << Rectangle.new(self, @x, @y + cut, @width, @height - cut)
+      end
+
+      def multiplier
+        pct = Rubystats::NormalDistribution.new(1.0, 0.2).rng
+        if pct < 0.2
+          pct = 0.2
+        elsif pct > 1.8
+          pct = 1.8
+        end
+        pct
       end
     end
   end
