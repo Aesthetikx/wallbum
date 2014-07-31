@@ -16,8 +16,8 @@ module Wallbum
 
     def get_image_link(release)
       begin
-        id = release.thumb.scan(%r!http://api\.discogs\.com/image/R-150-(.*)\.jpeg!).first.first
-        "http://s.pixogs.com/image/R-#{id}.jpeg"
+        img = release.thumb.scan(%r!http://api\.discogs\.com/image/R-150-(.*)!).first.first
+        "http://s.pixogs.com/image/R-#{img}"
       rescue
         nil
       end
