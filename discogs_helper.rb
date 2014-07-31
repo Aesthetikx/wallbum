@@ -28,5 +28,16 @@ module Wallbum
             "Referer" => "http://www.discogs.com/viewimages?release=#{release.main_release}")
       end
     end
+
+    def get_artist_images(artist_id, &block)
+      get_discogs_releases(artist_id).each do |release|
+        begin
+          get_release_images(release) do |filename, image|
+            yield filename, image
+          end
+        rescue Discogs::UnknownResource
+        end
+      end
+    end
   end
 end
