@@ -6,9 +6,11 @@ GEM
       oauth (~> 0.4.7)
     hashie (2.1.2)
     oauth (0.4.7)
+    rmagick (2.13.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   discogs-wrapper
+  rmagick
