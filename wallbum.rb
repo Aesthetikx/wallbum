@@ -26,6 +26,6 @@ end
 
 fnames = Dir["#{dir}/*"].collect
 
-Wallbum::ImagePacking::Packer.new().pack_images(1920, 1080, fnames) do |wallp|
+Wallbum::ImagePacking::Packer.new().pack_images(2560, 1600, fnames) do |wallp|
   wallp.write("#{artist_name.gsub(' ', '_')}.jpeg")
 end
