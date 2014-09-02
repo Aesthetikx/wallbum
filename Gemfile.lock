@@ -8,6 +8,7 @@ GEM
     oauth (0.4.7)
     rmagick (2.13.2)
     rubystats (0.2.3)
+    slop (3.6.0)
 
 PLATFORMS
   ruby
@@ -16,3 +17,4 @@ DEPENDENCIES
   discogs-wrapper
   rmagick
   rubystats
+  slop
