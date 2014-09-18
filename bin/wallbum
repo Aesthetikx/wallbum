@@ -1,5 +1,6 @@
-require_relative './discogs_helper.rb'
-require_relative './image_packer.rb'
+#!/usr/bin/env ruby
+
+require 'wallbum'
 
 require 'fileutils'
 require 'slop'
