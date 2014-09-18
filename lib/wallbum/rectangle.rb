@@ -3,6 +3,14 @@ require 'rubystats'
 module Wallbum
   module ImagePacking
     class Rectangle
+
+      attr_reader :x
+      attr_reader :y
+      attr_reader :width
+      attr_reader :height
+      attr_reader :children
+      attr_accessor :image
+
       def initialize(parent, x, y, width, height)
         @parent = parent
         @width = width
@@ -72,13 +80,6 @@ module Wallbum
           split_vert
         end
       end
-
-      attr_reader :x
-      attr_reader :y
-      attr_reader :width
-      attr_reader :height
-      attr_reader :children
-      attr_accessor :image
 
       private
 

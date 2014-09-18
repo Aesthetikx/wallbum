@@ -19,13 +19,15 @@ module Wallbum
       return unless ['Main', 'Remix'].include? release.role
       puts "Downloading '#{release.title}'"
       release_images = @discogs_wrapper.get_release(release.main_release).images
-      filenames = release_images.map { |image| image.resource_url.split("/").last }
-      filenames.each do |fn|
-        yield fn,
-          open(
-            "http://s.pixogs.com/image/#{fn}",
-            "User-Agent" => "Mozilla/5.0",
-            "Referer" => "http://www.discogs.com/viewimages?release=#{release.main_release}")
+      unless release_images.nil?
+        filenames = release_images.map { |image| image.resource_url.split("/").last }
+        filenames.each do |fn|
+          yield fn,
+            open(
+              "http://s.pixogs.com/image/#{fn}",
+              "User-Agent" => "Mozilla/5.0",
+              "Referer" => "http://www.discogs.com/viewimages?release=#{release.main_release}")
+        end
       end
     end
 
